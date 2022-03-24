@@ -1,7 +1,38 @@
+server:
+  port: 80
+  servlet:
+    context-path: /
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
 spring:
+#  (SsurBee) Using JSP, https://www.youtube.com/watch?v=U9OnYKiSf4g&list=PL93mKxaRDidECgjOBjPgI3Dyo8ka6Ilqm&index=19
+#  mvc:
+#    view:
+#      prefix: /WEB-INF/views/
+#      suffix: .jsp
+
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/book_ex?serverTimezone=Asia/Seoul
+    url: jdbc:mysql://localhost:3306/blog?serverTimezone=Asia/Seoul
     username: root
     password: sb-db_cl000000
+
+  jpa:
+    open-in-view: true
+    hibernate:
+      ddl-auto: none
+#      ddl-auto: update                        # create - ?? ????? DB??? / update - ????? DB? ?? / none - DB? ??? ??? ?? ??.
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl     # Java @Entity? ???? ??? DB? ???? ?????.
+      use-new-id-generator-mappings: false    # JPA? ???? PK(id) numbering ??? ???? true, ???? ??? false
+    show-sql: true                            # Console? SQL? ???.
+    properties:
+      hibernate.format_sql: true              # Console?? SQL? ??? ???? ?? ???, ??? ?? ???? ?????.
+
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
 
